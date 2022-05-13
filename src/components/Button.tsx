@@ -8,7 +8,7 @@ export enum ButtonTypes {
 
 interface ButtonProps {
   btnText: string;
-  btnType: ButtonTypes;
+  btnType: ButtonTypes | undefined;
   btnClass: string;
   onSub: () => void;
 }

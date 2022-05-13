@@ -26,6 +26,8 @@ export const Form: React.FC = () => {
         password: pass,
       });
       setOutput(response.data);
+      setUsername('')
+      setPass('')
     } catch (error) {
       throw new Error(error);
     }
