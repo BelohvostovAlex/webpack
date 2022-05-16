@@ -1,1 +1,1 @@
-export { ButtonContainer } from './ButtonContainer'
+export { Button } from './Button';

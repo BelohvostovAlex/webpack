@@ -1,5 +1,5 @@
-import React from "react";
-import { FormContainer } from "./components/Form";
+import React from 'react';
+import { FormContainer } from './components/Form';
 
 export const App = () => {
   return (

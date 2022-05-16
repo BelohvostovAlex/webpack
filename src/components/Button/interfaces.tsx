@@ -1,21 +1,14 @@
-import React from "react";
+import React from 'react';
 
 export enum ButtonTypes {
-  submit = "submit",
-  button = "button",
-  reset = "reset",
-}
-
-export interface ButtonContainerProps {
-  btnText: string;
-  btnType: ButtonTypes | undefined;
-  btnClass: string;
-  onSub: () => void;
+  submit = 'submit',
+  button = 'button',
+  reset = 'reset',
 }
 
 export interface ButtonProps {
   btnText: string;
   btnType: ButtonTypes | undefined;
   btnClass: string;
-  onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }

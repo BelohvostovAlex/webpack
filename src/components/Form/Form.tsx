@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { ButtonContainer } from "../Button";
-import { ButtonTypes } from "../Button/interfaces";
-import { FormProps } from "./interfaces";
+import { Button } from '../Button';
+import { ButtonTypes } from '../Button/interfaces';
+import { FormProps } from './interfaces';
 
-import "./form.scss";
+import './form.scss';
 
 export const Form: React.FC<FormProps> = ({
   username,
@@ -32,11 +32,11 @@ export const Form: React.FC<FormProps> = ({
         value={password}
         onChange={handlePassword}
       />
-      <ButtonContainer
+      <Button
         btnText="send"
-        btnType={ButtonTypes.submit}
+        btnType={ButtonTypes.button}
         btnClass="submitBtn"
-        onSub={onSubmit}
+        onClick={onSubmit}
       />
       {output && (
         <div className="output">
