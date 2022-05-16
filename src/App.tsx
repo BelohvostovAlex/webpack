@@ -1,10 +1,10 @@
 import React from "react";
-import { Form } from "./components/Form";
+import { FormContainer } from "./components/Form/FormContainer";
 
 export const App = () => {
   return (
     <div className="app">
-      <Form />
+      <FormContainer />
     </div>
   );
 };
