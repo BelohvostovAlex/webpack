@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ButtonContainer } from "../Button/ButtonContainer";
+import { ButtonContainer } from "../Button";
 import { ButtonTypes } from "../Button/interfaces";
 import { FormProps } from "./interfaces";
 
