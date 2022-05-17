@@ -2,6 +2,6 @@ import React from 'react';
 
 import { FormContainer } from '../../components/Form';
 
-export const Main: React.FC = () => {
+export const Login: React.FC = () => {
   return <FormContainer />;
 };

@@ -6,6 +6,6 @@ export interface IRoute {
 }
 
 export enum pathesEnum {
-  MAIN = '/main',
-  USERS = '/',
+  LOGIN = '/',
+  USERS = '/users',
 }
