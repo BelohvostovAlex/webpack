@@ -15,30 +15,10 @@ const optimization = () => {
       chunks: "all",
     },
   };
-
   if (isProd) {
     config.minimizer = [new CssMinimizerPlugin(), new TerserWebpackPlugin()];
   }
   return config;
-};
-
-const cssLoaders = (extra) => {
-  const loaders = [MiniCssExtractPlugin.loader, "css-loader"];
-  if (extra) {
-    loaders.push(extra);
-  }
-  return loaders;
-};
-
-const babelOptions = (...extra) => {
-  const options = {
-    presets: ["@babel/preset-env"],
-    plugins: ["@babel/plugin-transform-runtime"],
-  };
-  if (extra) {
-    options.presets.push(...extra);
-  }
-  return options;
 };
 
 module.exports = {
@@ -81,11 +61,11 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: cssLoaders(),
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.s[ac]ss$/,
-        use: cssLoaders("sass-loader"),
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
@@ -100,7 +80,10 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          options: babelOptions(),
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
         },
       },
       {
@@ -108,10 +91,14 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          options: babelOptions(
-            "@babel/preset-react",
-            "@babel/preset-typescript"
-          ),
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@babel/preset-typescript",
+            ],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
         },
       },
     ],
