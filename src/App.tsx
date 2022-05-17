@@ -1,10 +1,18 @@
-import React from 'react';
-import { FormContainer } from './components/Form';
+import React, { useState } from 'react';
+import { AppRouter } from './components/AppRouter';
+import { AppContext } from './context';
 
-export const App = () => {
+export const App: React.FC = () => {
+  const [isAuth, setIsAuth] = useState(false);
+  const changeSetIsAuth = (val: boolean) => {
+    setIsAuth(val);
+  };
+
   return (
-    <div className="app">
-      <FormContainer />
-    </div>
+    <AppContext.Provider value={{ isAuth, changeSetIsAuth }}>
+      <div className="app">
+        <AppRouter />
+      </div>
+    </AppContext.Provider>
   );
 };
