@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
-import { IUser } from './interfaces';
+import React, { useState, useEffect } from 'react';
+import { IUser, IUserWithCheck } from './interfaces';
 import { UsersPage } from './UsersPage';
-import { AppContext } from '../../context';
 
 export const UsersPageContainer: React.FC = () => {
   const [users, setUsers] = useState([] as IUser[]);
-  const { changeSetIsAuth } = useContext(AppContext);
+  const [usersWithCheck, setUsersWithCheck] = useState([] as IUserWithCheck[]);
 
   useEffect(() => {
     getUsers();
@@ -17,28 +16,30 @@ export const UsersPageContainer: React.FC = () => {
       const { data } = await axios.get<IUser[]>(
         'https://jsonplaceholder.typicode.com/users?_limit=10'
       );
-      setUsers(
-        data.map((item) => {
-          return {
-            ...item,
-            checked: false,
-          };
-        })
-      );
+      setUsers(data);
+      getUsersWithCheck(data);
     } catch (error) {
       throw new Error(error);
     }
   };
 
-  const deleteUser = (checked: boolean, id: number) => {
-    const currUser = users.find((user) => user.id === id);
-    if (checked) {
-      setUsers([...users.filter((user) => user.id !== currUser.id)]);
-    }
+  const getUsersWithCheck = (data: IUser[]) => {
+    const newUsersWithCheck = data.map((item) => {
+      return {
+        ...item,
+        checked: false,
+      };
+    });
+    setUsersWithCheck(newUsersWithCheck);
   };
+
+  const deleteUser = () => {
+    setUsersWithCheck([...usersWithCheck.filter((user) => !user.checked)]);
+  };
+
   const toggleChecked = (id: number) => {
-    setUsers([
-      ...users.map((user) => {
+    setUsersWithCheck([
+      ...usersWithCheck.map((user) => {
         return user.id === id
           ? { ...user, checked: !user.checked }
           : { ...user };
@@ -47,10 +48,9 @@ export const UsersPageContainer: React.FC = () => {
   };
   return (
     <UsersPage
-      users={users}
+      users={usersWithCheck}
       handleDelete={deleteUser}
       toggleChecked={toggleChecked}
-      changeSetIsAuth={changeSetIsAuth}
     />
   );
 };

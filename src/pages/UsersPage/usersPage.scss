@@ -1,30 +1,26 @@
-.user-item {
+.users-page {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-
-  input {
-    width: 20px;
-    height: 20px;
-    margin-right: 20px;
-  }
-}
-
-
-.user-page {
-  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.sign-out__btn {
-  margin-right: 50px;
-  width: 100px;
-  height: 30px;
+.users-table {
+  width: 50vw;
+  max-width: 1100px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.users-page__btn {
+  display: block;
+  width: 80px;
+  height: 40px;
   cursor: pointer;
+  margin: 50px 0px;
 }
 
-.delete__btn {
-  margin-left: 10px;
-  padding: 5px;
+.users-table__checkbox {
+  width: 20px;
+  height: 20px;
 }

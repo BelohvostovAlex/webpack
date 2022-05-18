@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button } from '../../components/Button';
 import { ButtonTypes } from '../../components/Button/interfaces';
 import { UserPageProps } from './interfaces';
@@ -8,38 +8,36 @@ export const UsersPage: React.FC<UserPageProps> = ({
   users,
   handleDelete,
   toggleChecked,
-  changeSetIsAuth,
 }) => {
   return (
-    <div className="user-page">
+    <div className="users-page">
+      <table className="users-table">
+        <tbody>
+          {users.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={user.checked}
+                    onChange={() => toggleChecked(user.id)}
+                    className="users-table__checkbox"
+                  />
+                </td>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       <Button
-        btnClass="send sign-out__btn"
-        btnText="Sign out"
+        btnClass="send users-page__btn"
+        btnText="delete"
         btnType={ButtonTypes.button}
-        onClick={() => changeSetIsAuth(false)}
+        onClick={() => handleDelete()}
       />
-      <ul>
-        {users.map((user) => {
-          return (
-            <li className="user-item" key={user.id}>
-              <input
-                type="checkbox"
-                checked={user.checked}
-                onChange={() => toggleChecked(user.id)}
-              />
-              <div>
-                {user.id}: {user.name}, user's email: {user.email}
-              </div>
-              <Button
-                btnClass="send delete__btn"
-                btnText="Delete"
-                btnType={ButtonTypes.button}
-                onClick={() => handleDelete(user.checked, user.id)}
-              />
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 };
