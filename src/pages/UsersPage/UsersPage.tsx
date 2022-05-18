@@ -13,13 +13,12 @@ export const UsersPage: React.FC<UserPageProps> = ({
     <div className="users-page">
       <table className="users-table">
         <tbody>
-          {users.map(({ id, checked, name, email }) => {
+          {users.map(({ id, name, email }) => {
             return (
               <tr key={id}>
                 <td>
                   <input
                     type="checkbox"
-                    checked={checked}
                     onChange={() => toggleChecked(id)}
                     className="users-table__checkbox"
                   />

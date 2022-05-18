@@ -4,12 +4,8 @@ export interface IUser {
   email: string;
 }
 
-export interface IUserWithCheck extends IUser {
-  checked: boolean;
-}
-
 export interface UserPageProps {
-  users: IUserWithCheck[];
+  users: IUser[];
   handleDelete: () => void;
   toggleChecked: (id: number) => void;
 }
