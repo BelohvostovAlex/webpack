@@ -13,20 +13,20 @@ export const UsersPage: React.FC<UserPageProps> = ({
     <div className="users-page">
       <table className="users-table">
         <tbody>
-          {users.map((user) => {
+          {users.map(({ id, checked, name, email }) => {
             return (
-              <tr key={user.id}>
+              <tr key={id}>
                 <td>
                   <input
                     type="checkbox"
-                    checked={user.checked}
-                    onChange={() => toggleChecked(user.id)}
+                    checked={checked}
+                    onChange={() => toggleChecked(id)}
                     className="users-table__checkbox"
                   />
                 </td>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>{email}</td>
               </tr>
             );
           })}
@@ -36,7 +36,7 @@ export const UsersPage: React.FC<UserPageProps> = ({
         btnClass="send users-page__btn"
         btnText="delete"
         btnType={ButtonTypes.button}
-        onClick={() => handleDelete()}
+        onClick={handleDelete}
       />
     </div>
   );
