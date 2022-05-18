@@ -5,7 +5,7 @@ import { UsersPage } from './UsersPage';
 
 export const UsersPageContainer: React.FC = () => {
   const [users, setUsers] = useState([] as IUser[]);
-  const [usersSet, setUsersSet] = useState(new Set());
+  const [checkedUserIDs, setCheckedUserIDs] = useState(new Set());
 
   useEffect(() => {
     getUsers();
@@ -22,25 +22,22 @@ export const UsersPageContainer: React.FC = () => {
     }
   };
 
-  const getIsChecked = (id: number) => {
-    if (usersSet.has(id)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const getIsChecked = (id: number) => checkedUserIDs.has(id);
 
   const deleteUser = () => {
-    setUsers([...users.filter((user) => !getIsChecked(user.id))]);
+    setUsers(users.filter((user) => !getIsChecked(user.id)));
   };
 
   const toggleChecked = (id: number) => {
-    if (usersSet.has(id)) {
-      const arr = Array.from(usersSet).filter((item) => item !== id);
-      setUsersSet(new Set(arr));
-    } else {
-      setUsersSet((prevSet) => prevSet.add(id));
-    }
+    setCheckedUserIDs((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
   };
   return (
     <UsersPage
