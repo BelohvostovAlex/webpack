@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormContainer } from './components/Form';
+import { AppRouter } from './components/AppRouter';
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <div className="app">
-      <FormContainer />
+      <AppRouter />
     </div>
   );
 };
